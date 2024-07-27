@@ -6,13 +6,12 @@ import "../styles/Listings.scss";
 import Loader from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../redux/state";
+import ListingCard from "./ListingCard";
 
 const Listings = () => {
-  const listing = useSelector((state) => state?.Listings);
-
-  console.log("listingrdx", listing);
-
   const dispatch = useDispatch();
+  const listings = useSelector((state) => state.listings);
+
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -28,12 +27,15 @@ const Listings = () => {
       );
 
       const data = await response.json();
+      console.log("datadatadatadata", data);
       dispatch(setListings({ listings: data }));
       setLoading(false);
     } catch (err) {
       console.log("Fetch Listings Failed", err.message);
     }
   };
+
+  console.log("listingrdx", listings);
 
   useEffect(() => {
     if (selectedCategory) getFeedListings();
@@ -53,7 +55,39 @@ const Listings = () => {
           </div>
         );
       })}
-      {listing?.map((item) => ({}))}
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="listings">
+          {listings?.map(
+            ({
+              _id,
+              creator,
+              listingPhotoPaths,
+              city,
+              province,
+              country,
+              category,
+              type,
+              price,
+              booking = false,
+            }) => (
+              <ListingCard
+                listingId={_id}
+                creator={creator}
+                listingPhotoPaths={listingPhotoPaths}
+                city={city}
+                province={province}
+                country={country}
+                category={category}
+                type={type}
+                price={price}
+                booking={booking}
+              />
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 };
