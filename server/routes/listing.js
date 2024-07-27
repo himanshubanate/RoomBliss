@@ -78,4 +78,27 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  const qCategory = req.params.category;
+
+  try {
+    const list = Listing?.find({ category: qCategory });
+    let listings;
+    if (qCategory) {
+      listings = await Listing.find({ category: qCategory }).populate(
+        "creator"
+      );
+    } else {
+      listings = await Listing.find().populate("creator");
+    }
+
+    res.status(200).json(listings);
+  } catch (err) {
+    res
+      .status(409)
+      .json({ message: "Failed to fetch properties", error: err.message });
+    console.log(err);
+  }
+});
+
 module.exports = router;
