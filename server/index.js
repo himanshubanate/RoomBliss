@@ -10,6 +10,7 @@ const listingRoutes = require("./routes/listing");
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
+app.use("/public", express.static("public"));
 
 const PORT = process.env.PORT || 3001;
 const URL = process.env.MONGO_URL;
