@@ -1,0 +1,16 @@
+@import "./variables.scss";
+@import "./breakpoints.scss";
+
+.slide {
+  h1 {
+    color: $pinkred;
+    text-align: center;
+    font-size: 60px;
+    margin-top: 130px;
+  }
+  p {
+    color: $darkgrey;
+    text-align: center;
+    font-size: 50px;
+  }
+}
