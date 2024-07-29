@@ -41,7 +41,7 @@ const ListingCard = ({
     <div
       className="listing-card"
       onClick={() => {
-        // navigate(`/properties/${listingId}`);
+        navigate(`/properties/${listingId}`);
       }}
     >
       <div className="slider-container">
