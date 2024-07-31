@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 
 const authRoutes = require("./routes/auth");
 const listingRoutes = require("./routes/listing");
+const bookingRoutes = require("./routes/Booking");
+const userRoutes = require("./routes/user.js");
 
 app.use(cors());
 app.use(express.json());
@@ -18,6 +20,8 @@ const URL = process.env.MONGO_URL;
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
+app.use("/bookings", bookingRoutes);
+app.use("/users", userRoutes);
 
 /* MONGOOSE SETUP */
 mongoose

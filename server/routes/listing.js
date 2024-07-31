@@ -67,7 +67,7 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
 
     await newListing.save();
     res.status(200).json({
-      message: "Listing created SuccessFuly!",
+      message: "Listing created SuccessFully!",
       listing: newListing,
     });
   } catch (err) {
