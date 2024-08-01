@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,32 +45,41 @@ const Login = () => {
       setLoader(false);
     }
   };
+  const notify = () => toast("This is a toast notification !");
   return (
     <div className="login">
-      {loader && <Loader />}
-      <div className="login_content">
-        <form action="" className="login_content_form" onSubmit={handleSubmit}>
-          <input
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            required
-          />
-          <button type="submit">LOGIN</button>
-        </form>
+      {loader ? (
+        <Loader />
+      ) : (
+        <div className="login_content">
+          <form
+            action=""
+            className="login_content_form"
+            onSubmit={handleSubmit}
+          >
+            <input
+              placeholder="Email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              required
+            />
+            <button type="submit">LOGIN</button>
+          </form>
 
-        <a href="/register">Don't Have an account? please register </a>
-      </div>
+          <a href="/register">Don't Have an account? please register </a>
+        </div>
+      )}
+      <ToastContainer />
     </div>
   );
 };
