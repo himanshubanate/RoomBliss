@@ -28,7 +28,7 @@ const Login = () => {
       /* Get data after fetching */
       const loggedIn = await response.json();
 
-      if (loggedIn) {
+      if (loggedIn?.login) {
         dispatch(
           setLogin({
             user: loggedIn.user,
