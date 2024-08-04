@@ -11,6 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WishList from "./pages/WishList";
 import PropertyList from "./pages/PropertyList";
+import ReservationList from "./pages/ReservationList";
+import CategoryPage from "./pages/CategoryPage";
 
 const App = () => {
   return (
@@ -26,7 +28,11 @@ const App = () => {
           <Route path="/:userId/trips" element={<TripList />} />
           <Route path="/:userId/wishList" element={<WishList />} />
           <Route path="/:userId/properties" element={<PropertyList />} />
-          {/* <Route path="/:userId/reservations" element={<ReservationList />} /> */}
+          <Route path="/:userId/reservations" element={<ReservationList />} />
+          <Route
+            path="/properties/category/:category"
+            element={<CategoryPage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

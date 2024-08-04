@@ -19,7 +19,7 @@ const WishList = () => {
             creator,
             listingPhotoPaths,
             city,
-            province,
+            state,
             country,
             category,
             type,
@@ -31,7 +31,7 @@ const WishList = () => {
               creator={creator}
               listingPhotoPaths={listingPhotoPaths}
               city={city}
-              province={province}
+              state={state}
               country={country}
               category={category}
               type={type}

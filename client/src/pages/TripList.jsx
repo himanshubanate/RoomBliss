@@ -57,7 +57,7 @@ const TripList = () => {
               creator={hostId._id}
               listingPhotoPaths={listingId.listingPhotoPaths}
               city={listingId.city}
-              province={listingId.province}
+              state={listingId.state}
               country={listingId.country}
               category={listingId.category}
               startDate={startDate}
