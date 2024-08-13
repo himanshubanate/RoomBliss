@@ -13,6 +13,7 @@ import WishList from "./pages/WishList";
 import PropertyList from "./pages/PropertyList";
 import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
+import SearchPage from "./pages/SearchPage";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             path="/properties/category/:category"
             element={<CategoryPage />}
           />
+          <Route path="/properties/search/:search" element={<SearchPage />} />
         </Routes>
       </BrowserRouter>
     </div>

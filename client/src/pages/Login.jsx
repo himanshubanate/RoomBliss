@@ -35,17 +35,23 @@ const Login = () => {
             token: loggedIn.token,
           })
         );
-        navigate("/");
+        toast.success("Login successful!", {
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
       } else {
         console.log(loggedIn?.message);
+        toast.error(loggedIn?.message || "Login failed");
       }
     } catch (err) {
       console.log("Login failed", err.message);
+      toast.error("Login failed: " + err.message);
     } finally {
       setLoader(false);
     }
   };
-  const notify = () => toast("This is a toast notification !");
   return (
     <div className="login">
       {loader ? (

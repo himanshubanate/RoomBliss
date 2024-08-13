@@ -16,7 +16,10 @@ app.use("/public", express.static("public"));
 
 const PORT = process.env.PORT || 3001;
 const URL = process.env.MONGO_URL;
-
+app.use((req, res, next) => {
+  console.log(req.params);
+  next();
+});
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);

@@ -101,9 +101,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
-
-// *****listing details****
+/* listing details */
 
 router.get("/:listingId", async (req, res) => {
   try {
@@ -116,3 +114,36 @@ router.get("/:listingId", async (req, res) => {
       .json({ message: "Listing can not found!", error: err.message });
   }
 });
+
+/** listing by searching */
+
+router.get("/search/:search", async (req, res) => {
+  console.log(req);
+  const { search } = req.params;
+  try {
+    const listings = Listing.find({
+      $or: [
+        {
+          category: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          title: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+      ],
+    }).populate("creator");
+    res.status(200).json(listings);
+  } catch (err) {
+    res
+      .status(404)
+      .json({ message: "Fail to fetch listings", error: err.message });
+    console.log(err);
+  }
+});
+
+module.exports = router;

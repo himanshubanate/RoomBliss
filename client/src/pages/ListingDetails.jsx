@@ -140,7 +140,7 @@ const ListingDetails = () => {
           <div>
             <h2>What this place offers?</h2>
             <div className="amenities">
-              {listing?.amenities[0].split(",").map((item, index) => (
+              {listing?.amenities[0]?.split(",")?.map((item, index) => (
                 <div className="facility" key={index}>
                   <div className="facility_icon">
                     {

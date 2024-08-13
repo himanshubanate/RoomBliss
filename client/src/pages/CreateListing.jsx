@@ -9,6 +9,8 @@ import { BiTrash } from "react-icons/bi";
 import { IoIosImages } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 const CreateListing = () => {
   const navigate = useNavigate();
   const creatorId = useSelector((state) => state.user._id);
@@ -127,11 +129,19 @@ const CreateListing = () => {
       });
 
       if (response.ok) {
-        // navigate("/");
         console.log("response", response);
+        toast.success("publish listing successful!", {
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } else {
+        toast.error("publish listing failed...");
       }
     } catch (err) {
       console.log("publish listing failed", err.message);
+      toast.error(err.message || "publish listing failed...");
     }
   };
   return (
@@ -505,6 +515,7 @@ const CreateListing = () => {
             CREATE YOUR LISTING
           </button>
         </form>
+        <ToastContainer />
       </div>
     </>
   );

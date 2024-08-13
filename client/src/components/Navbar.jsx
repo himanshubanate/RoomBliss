@@ -17,13 +17,19 @@ const Navbar = () => {
   const user = useSelector((state) => state.user);
   return (
     <div className="navbar">
-      <a href="/">
+      <Link to="/">
         <img src="/assets/logo.jpg" alt="logo"></img>
-      </a>
+      </Link>
+
       <div className="navbar_search">
         <input type="text" placeholder="search..." />
         <IconButton>
-          <Search sx={{ color: variables.pinkred }} />
+          <Search
+            sx={{ color: variables.pinkred }}
+            onClick={() => {
+              navigate(`properties/search/?search=Windmills`);
+            }}
+          />
         </IconButton>
       </div>
 

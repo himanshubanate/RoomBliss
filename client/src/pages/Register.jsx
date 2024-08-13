@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "../styles/Register.scss";
 
 const Register = () => {
@@ -50,10 +51,18 @@ const Register = () => {
       });
 
       if (response.ok) {
-        navigate("/login");
+        toast.success("Registration successful!", {
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        toast.error("Registration failed");
       }
     } catch (err) {
       console.log("Registration failed - ", err.message);
+      toast.error(err.message || "Registration failed");
     }
   };
   console.log("formData", formData);
@@ -131,6 +140,7 @@ const Register = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
